@@ -1,0 +1,43 @@
+#!/bin/sh
+
+printf "#########################################################\n"
+printf "#\t\t\t\t\t\t\t#\n"
+printf "#\tAll access is being logged\t\t\t#\n"
+printf "#\tPlease respect the system usage policy\t\t#\n"
+printf "#\t\t\t\t\t\t\t#\n"
+printf "#########################################################\n"
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+        # Fall back to using the very slow lsb_release utility
+        DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
+
+printf "Welcome to Computer Vision Lab. @ Hanyang Univ.\n"
+printf "This is CVLAB Server1.\n"
+
+printf "%s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+
+# ASCII Arts
+cat << "EOF"
+     ,----..               ,--,                         
+    /   /   \       ,---.,--.'|                ,---,    
+   |   :     :     /__./||  | :              ,---.'|    
+   .   |  ;. /,---.;  ; |:  : '              |   | :    
+   .   ; /--`/___/ \  | ||  ' |     ,--.--.  :   : :    
+   ;   | ;   \   ;  \ ' |'  | |    /       \ :     |,-. 
+   |   : |    \   \  \: ||  | :   .--.  .-. ||   : '  | 
+   .   | '___  ;   \  ' .'  : |__  \__\/: . .|   |  / : 
+   '   ; : .'|  \   \   '|  | '.'| ," .--.; |'   : |: | 
+   '   | '/  :   \   `  ;;  :    ;/  /  ,.  ||   | '/ : 
+   |   :    /     :   \ ||  ,   /;  :   .'   \   :    | 
+    \   \ .'       '---"  ---`-' |  ,     .-./    \  /  
+     `---`                        `--`---'   `-'----'   
+
+EOF
+
+stamp="/var/lib/update-notifier/updates-available"
+
+[ ! -r "$stamp" ] || cat "$stamp"
+
