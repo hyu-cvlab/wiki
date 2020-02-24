@@ -38,3 +38,5 @@ This script do these things.
 sudo apt install git -y && git clone https://github.com/hyu-cvlab/settings.git && cd settings && ./install.sh
 ```
 
+[Reference settings](https://github.com/maybes/settings)
+
